@@ -7043,9 +7043,11 @@
   $(window).scroll(function(){
     if ($(window).scrollTop() >= 200) {
       $('#wrapper-navbar').addClass('nempel');
+      $('#dpsp-floating-sidebar').addClass('nempel');
     }
     else {
       $('#wrapper-navbar').removeClass('nempel');
+      $('#dpsp-floating-sidebar').removeClass('nempel');
     }
       // console.log($(window).scrollTop());
   });
