@@ -735,11 +735,11 @@ h2{font-size:28px;}
 
 div#dpsp-floating-sidebar {
     top: 440px!important;
-    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.19, 0.68) 0s;
 }
 
 div#dpsp-floating-sidebar.nempel {
     top: 118px!important;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.19, 0.68) 0s; 
 }
 
 .dpsp-position-left.dpsp-shape-rounded .dpsp-networks-btns-sidebar .dpsp-network-btn.dpsp-first, .dpsp-position-left.dpsp-shape-rounded .dpsp-networks-btns-sidebar .dpsp-network-btn.dpsp-first .dpsp-network-icon {
