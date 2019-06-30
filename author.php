@@ -1,8 +1,8 @@
 <?php
 /**
- * The template for displaying the author pages.
+ * The template for displaying archive pages.
  *
- * Learn more: https://codex.wordpress.org/Author_Templates
+ * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  * @package pandublog
  */
@@ -12,10 +12,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
+
 $container = get_theme_mod( 'pandublog_container_type' );
 ?>
 
-<div class="wrapper" id="author-wrapper">
+<div class="wrapper" id="archive-wrapper">
 
 	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
 
@@ -26,71 +27,35 @@ $container = get_theme_mod( 'pandublog_container_type' );
 
 			<main class="site-main" id="main">
 
-				<header class="page-header author-header">
+				<?php if ( have_posts() ) : ?>
 
-					<?php
-					if ( isset( $_GET['author_name'] ) ) {
-						$curauth = get_user_by( 'slug', $author_name );
-					} else {
-						$curauth = get_userdata( intval( $author ) );
-					}
-					?>
+					<header class="page-header">
+						<?php
+						the_archive_title( '<h1 class="page-title">', '</h1>' );
+						the_archive_description( '<div class="taxonomy-description">', '</div>' );
+						?>
+					</header><!-- .page-header -->
 
-					<h1><?php echo esc_html__( 'About:', 'pandublog' ) . ' ' . esc_html( $curauth->nickname ); ?></h1>
+					<?php /* Start the Loop */ ?>
+					<?php while ( have_posts() ) : the_post(); ?>
 
-					<?php if ( ! empty( $curauth->ID ) ) : ?>
-						<?php echo get_avatar( $curauth->ID ); ?>
-					<?php endif; ?>
+						<?php
 
-					<?php if ( ! empty( $curauth->user_url ) || ! empty( $curauth->user_description ) ) : ?>
-						<dl>
-							<?php if ( ! empty( $curauth->user_url ) ) : ?>
-								<dt><?php esc_html_e( 'Website', 'pandublog' ); ?></dt>
-								<dd>
-									<a href="<?php echo esc_url( $curauth->user_url ); ?>"><?php echo esc_html( $curauth->user_url ); ?></a>
-								</dd>
-							<?php endif; ?>
+						/*
+						 * Include the Post-Format-specific template for the content.
+						 * If you want to override this in a child theme, then include a file
+						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+						 */
+						get_template_part( 'loop-templates/content', get_post_format() );
+						?>
 
-							<?php if ( ! empty( $curauth->user_description ) ) : ?>
-								<dt><?php esc_html_e( 'Profile', 'pandublog' ); ?></dt>
-								<dd><?php esc_html_e( $curauth->user_description ); ?></dd>
-							<?php endif; ?>
-						</dl>
-					<?php endif; ?>
+					<?php endwhile; ?>
 
-					<h2><?php echo esc_html( 'Posts by', 'pandublog' ) . ' ' . esc_html( $curauth->nickname ); ?>:</h2>
+				<?php else : ?>
 
-				</header><!-- .page-header -->
+					<?php get_template_part( 'loop-templates/content', 'none' ); ?>
 
-				<ul>
-
-					<!-- The Loop -->
-					<?php if ( have_posts() ) : ?>
-						<?php while ( have_posts() ) : the_post(); ?>
-							<li>
-								<?php
-								printf(
-									'<a rel="bookmark" href="%1$s" title="%2$s %3$s">%3$s</a>',
-									esc_url( apply_filters( 'the_permalink', get_permalink( $post ), $post ) ),
-									esc_attr( __( 'Permanent Link:', 'pandublog' ) ),
-									the_title( '', '', false )
-								);
-								?>
-								<?php pandublog_posted_on(); ?> 
-								<?php esc_html_e( 'in', 'pandublog' ); ?> 
-								<?php the_category( '&' ); ?>
-							</li>
-						<?php endwhile; ?>
-
-					<?php else : ?>
-
-						<?php get_template_part( 'loop-templates/content', 'none' ); ?>
-
-					<?php endif; ?>
-
-					<!-- End Loop -->
-
-				</ul>
+				<?php endif; ?>
 
 			</main><!-- #main -->
 
@@ -104,6 +69,6 @@ $container = get_theme_mod( 'pandublog_container_type' );
 
 	</div><!-- #content -->
 
-</div><!-- #author-wrapper -->
+	</div><!-- #archive-wrapper -->
 
 <?php get_footer(); ?>

@@ -103,8 +103,8 @@ if ( ! function_exists( 'pandublog_widgets_init' ) ) {
 				'description'   => __( 'Right sidebar widget area', 'pandublog' ),
 				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</aside>',
-				'before_title'  => '<h3 class="widget-title">',
-				'after_title'   => '</h3>',
+				'before_title'  => '<h4 class="widget-title"><span>',
+				'after_title'   => '</span></h4>',
 			)
 		);
 
@@ -115,8 +115,8 @@ if ( ! function_exists( 'pandublog_widgets_init' ) ) {
 				'description'   => __( 'Left sidebar widget area', 'pandublog' ),
 				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</aside>',
-				'before_title'  => '<h3 class="widget-title">',
-				'after_title'   => '</h3>',
+				'before_title'  => '<h4 class="widget-title"><span>',
+				'after_title'   => '</span></h4>',
 			)
 		);
 

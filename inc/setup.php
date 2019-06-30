@@ -46,7 +46,10 @@ if ( ! function_exists ( 'pandublog_setup' ) ) {
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'primary' => __( 'Primary Menu', 'pandublog' ),
+			'head-top'=> __( 'Head 1' , 'pandublog'),
+			'primary' => __( 'Head 2', 'pandublog' ),
+			'head-bottom' => __( 'Head 3', 'pandublog' ),
+			'footer' => __('Footer', 'pandublog')
 		) );
 
 		/*
@@ -132,9 +135,15 @@ if ( ! function_exists( 'pandublog_all_excerpts_get_more_link' ) ) {
 	 */
 	function pandublog_all_excerpts_get_more_link( $post_excerpt ) {
 		if ( ! is_admin() ) {
-			$post_excerpt = $post_excerpt . ' [...]<p><a class="btn btn-secondary pandublog-read-more-link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . __( 'Read More...',
+			$post_excerpt = $post_excerpt . '...<p><a class="btn btn-secondary pandublog-read-more-link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . __( 'Baca selengkapnya...',
 			'pandublog' ) . '</a></p>';
 		}
 		return $post_excerpt;
 	}
+}
+
+
+add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
+function wpdocs_custom_excerpt_length( $length ) {
+    return 20;
 }

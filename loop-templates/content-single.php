@@ -10,9 +10,35 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
+<?php 
+
+
+
+
+
+
+?>
+
+
+
+
+
+
+
+
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
+<div class="right-author-card">
+	<img src="<?php echo get_avatar_url( get_the_author_meta( 'ID' ));  ?>" width="112" height="112" alt="Eglė Goleckytė" class="avatar">
+	<a class="author-name" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) );  ?>"><?php echo get_the_author_meta( 'display_name' );  ?></a>
+	<div class="tambah-komen">
+		<a href="#comments">Komentar</a>
+	</div>
+</div>
+
 	<header class="entry-header">
+
+		<div class="head-category"><?php the_category( ', ' ); ?></div>
 
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 

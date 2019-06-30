@@ -16,31 +16,80 @@ $container = get_theme_mod( 'pandublog_container_type' );
 
 <?php get_template_part( 'sidebar-templates/sidebar', 'footerfull' ); ?>
 
-<div class="wrapper" id="wrapper-footer">
 
-	<div class="<?php echo esc_attr( $container ); ?>">
 
-		<div class="row">
 
-			<div class="col-md-12">
+<footer class="wrapper bg-primary" id="wrapper-footer">
 
-				<footer class="site-footer" id="colophon">
+	<div class="container site-footer">
 
-					<div class="site-info">
+		<div class="row logo-menu">
 
-						<?php pandublog_site_info(); ?>
+			<div class="site-logo">
 
-					</div><!-- .site-info -->
+					<?php if ( ! has_custom_logo() ) { ?>
 
-				</footer><!-- #colophon -->
+						<?php if ( is_front_page() && is_home() ) : ?>
 
-			</div><!--col end -->
+							<h1 class="navbar-brand mb-0"><a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" itemprop="url"><?php bloginfo( 'name' ); ?></a></h1>
 
+						<?php else : ?>
+
+							<a class="navbar-brand" rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" itemprop="url"><?php bloginfo( 'name' ); ?></a>
+
+						<?php endif; ?>
+
+
+					<?php } else {
+						the_custom_logo();
+					} ?><!-- end custom logo -->
+			</div><!-- .site-info -->
+
+			<?php
+				wp_nav_menu( array( 
+				    'theme_location' => 'footer', 
+				    'container_class' => 'site-nav nav-footer'
+				) ); 
+			?>
 		</div><!-- row end -->
+
+
+		<div class="row copy-sm">
+			<div class="copy">
+				<p class="copyright"><?php echo get_theme_mod( 'footer_text', '©2019, Pandublog Theme With Wordpress' ); ?></p>
+			</div>
+
+			<div class="sm">
+				<span class="title">Follow me around the web</span>
+				<ul class="menu-social-media">
+					<li class="menu-item social-facebook">
+						<a href="<?php echo get_theme_mod( 'footer_facebook', 'https://www.facebook.com/' ); ?>" target="_blank">
+							<i class="fa fa-facebook-square"></i>
+						</a>
+					</li>
+					<li class="menu-item social-twitter">
+						<a href="<?php echo get_theme_mod( 'footer_twitter', 'https://www.twitter.com/' ); ?>" target="_blank">
+							<i class="fa fa-twitter-square"></i>
+						</a>
+					</li>
+					<li class="menu-item social-youtube">
+						<a href="<?php echo get_theme_mod( 'footer_youtube', 'https://www.youtube.com/' ); ?>" target="_blank">
+							<i class="fa fa-youtube-square"></i>
+						</a>
+					</li>
+					<li class="menu-item social-instagram">
+						<a href="<?php echo get_theme_mod( 'footer_instagram', 'https://www.instagram.com/' ); ?>" target="_blank">
+							<i class="fa fa-instagram"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+			
+		</div>
 
 	</div><!-- container end -->
 
-</div><!-- wrapper end -->
+</footer><!-- wrapper end -->
 
 </div><!-- #page we need this extra closing tag here -->
 
@@ -49,4 +98,8 @@ $container = get_theme_mod( 'pandublog_container_type' );
 </body>
 
 </html>
+
+
+
+
 
