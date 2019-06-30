@@ -7061,7 +7061,7 @@
     $('#main-menu li:nth-last-child(1) a').append(' <i class="fa fa-chevron-right" aria-hidden="true" style="font-size:13px;"></i>');
 
     home_url = window.location.protocol + "//" + window.location.hostname;
-    $('#bottom-menu').prepend('<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" class="menu-item menu-item-type-custom menu-item-object-custom nav-item"><a title="Movies" href="'+ home_url +'" class="nav-link"><i class="fa fa-home" aria-hidden="true" style="font-size:18px;"></i></a></li>');
+    $('#bottom-menu').prepend('<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" class="menu-item menu-item-type-custom menu-item-object-custom nav-item"><a title="Home" href="'+ home_url +'" class="nav-link"><i class="fa fa-home" aria-hidden="true" style="font-size:18px;"></i></a></li>');
 
     
 
